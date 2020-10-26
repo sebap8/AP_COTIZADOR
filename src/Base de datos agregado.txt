@@ -1,0 +1,89 @@
+
+create table usuarios(
+id int not null,
+nombre varchar(20),
+apellido varchar(20),
+usuario varchar(15),
+email varchar(50),
+contrasena varchar(20),
+estado varchar(10),
+CONSTRAINT pk_usuario PRIMARY KEY (id)
+);
+
+create table perfilpanel(
+id int not null,
+nombre varchar(30),
+idUsuario int not null,
+CONSTRAINT pk_usuario PRIMARY KEY (id),
+CONSTRAINT perfilpanel_fk_usuarios FOREIGN KEY (idUsuario) references usuarios(Id)
+);
+
+create table productoprecio(
+id int not null,
+idproducto int not null,
+precio float not null,
+CONSTRAINT pk_productoprecio PRIMARY KEY (id),
+CONSTRAINT productoprecio_fk_productos FOREIGN KEY (idProducto) references productos(Id)
+);
+
+create table listaPrecio(
+id int not null,
+nombre varchar(50),
+descripcion varchar(100),
+codigo varchar(30),
+rentabilidad int not null,
+estado varchar(20),
+CONSTRAINT pk_listaPrecio PRIMARY KEY (id)
+);
+
+create table presupuesto(
+id int not null,
+fecha varchar(10),
+fechaVencimiento varchar(10),
+idCliente int not null,
+idListaPrecio int not null,
+idFormadePago int not null,
+subtotal float,
+descuento float,
+iva float,
+total float,
+idResponsable int not null,
+estado varchar(20),
+CONSTRAINT pk_presupuesto PRIMARY KEY (id),
+CONSTRAINT presupuesto_fk_cliente FOREIGN KEY (idCliente) references clientes(Id),
+CONSTRAINT presupuesto_fk_listaPrecio FOREIGN KEY (idListaPrecio) references listaPrecio(Id),
+CONSTRAINT presupuesto_fk_formaDePago FOREIGN KEY (IdFormadepago) references formadepago(Id),
+CONSTRAINT presupuesto_fk_usuarios FOREIGN KEY (idResponsable) references usuarios(Id)
+);
+
+create table itemPresupuesto(
+id int not null,
+idPresupuesto int not null,
+idProducto int not null,
+cantidad int not null,
+precio float,
+CONSTRAINT pk_itemPresupuesto PRIMARY KEY (id),
+CONSTRAINT itemPresupuesto_fk_presupuesto FOREIGN KEY (idPresupuesto) references presupuesto(Id),
+CONSTRAINT itemPresupuesto_fk_productos FOREIGN KEY (idProducto) references productos(Id)
+);
+
+create table fotoproducto(
+id int not null,
+idProducto int not null,
+foto longblob,
+CONSTRAINT pk_fotoproducto PRIMARY KEY (id),
+CONSTRAINT fotoproducto_fk_productos FOREIGN KEY (idProducto) references productos(Id)
+);
+
+create table descuentos(
+id int not null,
+autorizado int not null,
+supervisor int not null,
+CONSTRAINT pk_descuentos PRIMARY KEY (id)
+);
+create table formadepago(
+id int not null,
+descripcion varchar(50),
+estado varchar(20),
+CONSTRAINT pk_formadepago PRIMARY KEY (id)
+);
