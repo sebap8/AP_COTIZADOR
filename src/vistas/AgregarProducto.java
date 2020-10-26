@@ -27,6 +27,7 @@ public class AgregarProducto extends JFrame {
 	private JLabel lblStockMinimo;
 	private JTextField textStockMinimo;
 	private JLabel label;
+	
 
 	/**
 	 * Launch the application.
@@ -90,7 +91,7 @@ public class AgregarProducto extends JFrame {
 						JOptionPane.showMessageDialog(null, "Debe ingresar un nombre de producto.","ERROR", JOptionPane.ERROR_MESSAGE);
 					}
 				}catch(Exception ex) {
-					JOptionPane.showMessageDialog(null, "Verifique la información ingresada. \n M3: solo números enteros o decimales. \n STOCK MÍNIMO: solo números enteros.","ERROR", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Verifique la información ingresada. \n M3: solo números enteros o decimales. \n STOCK M�NIMO: solo números enteros.","ERROR", JOptionPane.ERROR_MESSAGE);
 				}
 				
 			}
@@ -116,7 +117,7 @@ public class AgregarProducto extends JFrame {
 		panel.add(textM3);
 		textM3.setColumns(10);
 		
-		lblStockMinimo = new JLabel("STOCK MÍNIMO");
+		lblStockMinimo = new JLabel("STOCK M�NIMO");
 		lblStockMinimo.setBounds(10, 90, 143, 16);
 		panel.add(lblStockMinimo);
 		
